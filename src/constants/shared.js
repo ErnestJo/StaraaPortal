@@ -1,0 +1,6 @@
+export const SET_LOADING = 'SET_LOADING'
+export const REMOVE_LOADING = 'REMOVE_LOADING'
+export const SET_USER_DATA = 'SET_USER_DATA'
+export const CLEAR_STORAGE = 'CLEAR_STORAGE'
+export const SET_ROLES = 'SET_ROLES'
+export const SET_DISPATCHERS = 'SET_DISPATCHERS'

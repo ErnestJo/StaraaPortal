@@ -1,0 +1,12 @@
+.logoPlace {
+  background-color: white !important;
+  width: 100%;
+
+  color: black !important;
+  min-height: 4rem;
+}
+
+
+.logoSize {
+  width: 70%;
+}
