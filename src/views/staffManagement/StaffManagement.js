@@ -1,20 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { Button, Card, Modal, Form, Row, Col, Badge } from 'react-bootstrap'
 import { useEffect, useState, useRef } from 'react'
-import AddProjectForm from '../../components/forms/AddProjectForm'
 import axios from 'axios'
-import { useForm } from 'react-hook-form'
 import { CButton, CBadge } from '@coreui/react'
 import ExcelJS from 'exceljs'
 import { exportDataGrid } from 'devextreme/excel_exporter'
 import saveAs from 'file-saver'
 import Notify from '../../Helper/Notify'
 import * as Icon from 'react-bootstrap-icons'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import CIcon from '@coreui/icons-react'
-import { cilFingerprint } from '@coreui/icons'
+import { connect } from 'react-redux'
+import LoadingSpinner from '../../components/Spinner/Spinner'
+import { getWithLoader, posttWithLoader } from '../../actions/request'
+import AddUser from 'src/components/userManagement/AddUser'
 
 import DataGrid, {
   Column,
@@ -37,208 +38,10 @@ const Disable_URL = '/api/StaffManagement/DisableStaff'
 const Active_URL = '/api/StaffManagement/ActivateStaff'
 const ChangePassword_URL = '/api/StaffManagement/ChangeStaffPassword'
 
-const schema = yup.object().shape({
-  project_name: yup.string().required(),
-  project_status: yup.number().required(),
-  start_date: yup.date().required(),
-  end_date: yup.date().required(),
-  client: yup.number().required(),
-})
-function CustomModal(props) {
-  const [projectStatusOption, setProjectStatusOptions] = useState([])
-  const [clientsOption, setClientsOptions] = useState([])
-  const [staffOption, setStaffOptions] = useState([])
-
-  const userRef = useRef()
-
-  React.useEffect(() => {}, [])
-  const { register, errors, handleSubmit, watch, reset } = useForm({
-    mode: 'onChange',
-    resolver: yupResolver(schema),
-  })
-
-  const [errMsg, setErrMsg] = useState('')
-  const [success, setSuccess] = useState(false)
-
-  const submitProjectData = (data) => {
-    // try {
-    //   var body = {
-    //     project_name: data.project_name,
-    //     project_status: parseInt(data.project_status),
-    //     start_date: data.start_date,
-    //     end_date: data.end_date,
-    //     end_date: data.end_date,
-    //     client: parseInt(data.client),
-    //     product_owner: parseInt(data.product_owner),
-    //   }
-    //   console.log(body)
-    //   axios
-    //     .post(AddProject_URL, body, {
-    //       headers: { 'content-Type': 'application/json' },
-    //     })
-    //     .then((data) => {
-    //       reset()
-    //       console.log(data.data[0].data[0])
-    //       if ((data.data[0].data[0].code = 111)) {
-    //         props.reloadPage()
-    //         props.onHide()
-    //         Notify.notifySuccess('Project was added Succefully')
-    //       } else {
-    //         Notify.notifyError('failed to add new project')
-    //       }
-    //     })
-    //   setSuccess(true)
-    // } catch (e) {}
-  }
-
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: GetClients_URL,
-  //   })
-  //     .then((data) => {
-  //       console.log(data.data[0].data)
-  //       setClientsOptions(data.data[0].data)
-  //       console.log(setClientsOptions)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [])
-
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: GetProjectStatus_URL,
-  //   })
-  //     .then((data) => {
-  //       console.log(data.data[0].data)
-  //       setProjectStatusOptions(data.data[0].data)
-  //       console.log(setClientsOptions)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [])
-
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: GetStaff_URL,
-  //   })
-  //     .then((data) => {
-  //       console.log(data.data[0].data)
-  //       setStaffOptions(data.data[0].data)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [])
-
-  return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal" centered>
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal">{props.title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit(submitProjectData)}>
-          <Row>
-            <Col md={6}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Project Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Name"
-                  name="project_name"
-                  {...register('project_name')}
-                  required
-                />
-              </Form.Group>
-            </Col>
-            <Col md={6}>
-              <Form.Label>Project Client</Form.Label>
-              <Form.Select aria-label="Default select example" {...register('client')}>
-                <option value="">Project Client</option>
-                {clientsOption.length > 0 &&
-                  clientsOption.map((client) => (
-                    <option key={client.client_id} value={client.client_id}>
-                      {client.client_name}{' '}
-                    </option>
-                  ))}
-              </Form.Select>
-            </Col>
-            <Col md={6}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Start date</Form.Label>
-                <Form.Control
-                  type="date"
-                  placeholder="Enter Start Date"
-                  name="start_date"
-                  {...register('start_date')}
-                  required
-                />
-              </Form.Group>
-            </Col>
-            <Col md={6}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>End date</Form.Label>
-                <Form.Control
-                  type="date"
-                  placeholder="Enter End Date"
-                  autoComplete="off"
-                  name="end_date"
-                  {...register('end_date')}
-                  required
-                />
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Label>Project Status</Form.Label>
-              <Form.Select
-                id="disabledSelect"
-                aria-label="Default select status"
-                {...register('project_status')}
-                required
-              >
-                <option value=""> Project status</option>
-                {projectStatusOption.length > 0 &&
-                  projectStatusOption.map((project_status) => (
-                    <option key={project_status.projectId} value={project_status.projectId}>
-                      {project_status.projectStatus}{' '}
-                    </option>
-                  ))}
-              </Form.Select>
-            </Col>
-            <Col md={6}>
-              <Form.Label>Product owner</Form.Label>
-              <Form.Select aria-label="Default select example" {...register('product_owner')}>
-                <option>Choose PO</option>
-                {staffOption.length > 0 &&
-                  staffOption.map((product_owner) => (
-                    <option key={product_owner.staff_id} value={product_owner.staff_id}>
-                      {product_owner.staff}
-                    </option>
-                  ))}
-              </Form.Select>
-            </Col>
-          </Row>
-
-          <Col md={12} className="mt-2">
-            <Button onClick={props.onHide}>Close</Button>
-            <Button className="float-end" type="submit">
-              {props.title}
-            </Button>
-          </Col>
-        </Form>
-      </Modal.Body>
-    </Modal>
-  )
-}
-
-const StaffManagement = () => {
+const StaffManagement = (posttWithLoader, getWithLoader) => {
   const [modalShow, setModalShow] = React.useState(false)
   const [dataProject, setDataProject] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const applyFilterTypes = [
     {
@@ -273,15 +76,19 @@ const StaffManagement = () => {
     showHeaderFilter: true,
     currentFilter: applyFilterTypes[0].key,
     startDate: new Date(),
+    toggleAddNewUser: false,
     endDate: new Date(),
   })
   var dataGrid = null
 
   useEffect(() => {
-    GetDataTable()
-  }, [])
+    if (dataProject == 0) {
+      GetDataTable()
+    }
+  }, [dataProject])
 
   const GetDataTable = () => {
+    setIsLoading(true)
     axios({
       method: 'GET',
       url: GetStaff_URL,
@@ -289,19 +96,23 @@ const StaffManagement = () => {
       .then((data) => {
         console.log(data.data.data)
         setDataProject(data.data.data)
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
+        setIsLoading(false)
       })
   }
 
   return (
     <div>
+      {isLoading && <LoadingSpinner />}
       <Card>
         <Card.Header>
-          <CButton color="primary" onClick={() => setModalShow(true)}>
+          <Button className="btn btn-success btn-sm float-right" onClick={() => setModalShow(true)}>
+            <Icon.PersonCheck />
             Add New Staff
-          </CButton>
+          </Button>
         </Card.Header>
         <Card.Body>
           <DataGrid
@@ -431,17 +242,27 @@ const StaffManagement = () => {
           </DataGrid>
         </Card.Body>
       </Card>
-      <CustomModal show={modalShow} reloadpage={GetDataTable} onHide={() => setModalShow(false)}>
-        <AddProjectForm />
-      </CustomModal>
+      {/* <Modal isOpen={state.toggleAddNewUser} toggle={toggleNewUser} className={'modal-success'}>
+        <AddUser />
+      </Modal> */}
+
+      <Modal
+        show={modalShow}
+        className={'modal-success'}
+        size="lg"
+        aria-labelledby="contained-modal"
+        centered
+      >
+        <AddUser onHide={() => setModalShow(false)} />
+      </Modal>
     </div>
   )
 }
 
-CustomModal.defaultProps = {
-  title: 'Add Staff',
-}
-CustomModal.propTypes = {
-  onHide: PropTypes.func,
-}
-export default StaffManagement
+const MapStateToProps = (state) => ({
+  sharedState: state.sharedState,
+})
+export default connect(MapStateToProps, {
+  getWithLoader,
+  posttWithLoader,
+})(StaffManagement)
