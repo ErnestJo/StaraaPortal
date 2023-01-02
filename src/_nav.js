@@ -21,8 +21,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Project Management',
-    to: '/project-management',
+    name: 'Staff Management',
+    to: '/staff',
     icon: <CIcon icon={cilFile} customClassName="nav-icon" />,
   },
   {

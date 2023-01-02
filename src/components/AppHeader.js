@@ -35,7 +35,7 @@ const AppHeader = () => {
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <h2>
-            <b>My Staraa salooon</b>
+            <b></b>
           </h2>
         </CHeaderNav>
         <CHeaderNav className="ms-3">
