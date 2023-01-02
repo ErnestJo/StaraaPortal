@@ -13,6 +13,8 @@ import Notify from '../../Helper/Notify'
 import * as Icon from 'react-bootstrap-icons'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import CIcon from '@coreui/icons-react'
+import { cilFingerprint } from '@coreui/icons'
 
 import DataGrid, {
   Column,
@@ -32,7 +34,7 @@ const GetStaff_URL = '/api/StaffManagement/GetAllStaff'
 const AddStaff_URL = '/api/StaffManagement/AddStaff'
 const GetSingle_URL = '/api/StaffManagement/GetSingleStaff'
 const Disable_URL = '/api/StaffManagement/DisableStaff'
-const Active_URL = '/api/StaffManagement/ActiveStaff'
+const Active_URL = '/api/StaffManagement/ActivateStaff'
 const ChangePassword_URL = '/api/StaffManagement/ChangeStaffPassword'
 
 const schema = yup.object().shape({
@@ -335,6 +337,82 @@ const StaffManagement = () => {
                       {' '}
                       Deactivate{' '}
                     </CBadge>
+                  )
+                }
+              }}
+            />
+
+            <Column
+              dataField="staff_id"
+              alignment="center"
+              caption="Action"
+              allowFiltering={false}
+              cellRender={(e) => {
+                if (e.data.isActive == 1) {
+                  return (
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <CButton>
+                        <Icon.Eye />
+                      </CButton>
+
+                      <CButton
+                        className="mx-1"
+                        onClick={() => {
+                          console.log(e.data)
+                          var body = {
+                            staff_id: e.data.staffId,
+                          }
+                          axios
+                            .post(Disable_URL, body, {
+                              headers: { 'content-Type': 'application/json' },
+                            })
+                            .then((data) => {
+                              console.log(data.data.data.code)
+                              if (data.data.data.code == 200) {
+                                GetDataTable()
+                                Notify.notifySuccessTopCenter(data.data.data.message)
+                              } else {
+                                Notify.notifyErrorTopCenter('Error occured')
+                              }
+                            })
+                        }}
+                      >
+                        <Icon.Trash />
+                      </CButton>
+                    </div>
+                  )
+                } else {
+                  return (
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <CButton>
+                        <Icon.Eye />
+                      </CButton>
+
+                      <CButton
+                        className="mx-1"
+                        onClick={() => {
+                          console.log(e.data)
+                          var body = {
+                            staff_id: e.data.staffId,
+                          }
+                          axios
+                            .post(Active_URL, body, {
+                              headers: { 'content-Type': 'application/json' },
+                            })
+                            .then((data) => {
+                              console.log(data.data.data.code)
+                              if (data.data.data.code == 200) {
+                                GetDataTable()
+                                Notify.notifySuccessTopCenter(data.data.data.message)
+                              } else {
+                                Notify.notifyErrorTopCenter('Error occured')
+                              }
+                            })
+                        }}
+                      >
+                        <Icon.Unlock />
+                      </CButton>
+                    </div>
                   )
                 }
               }}
