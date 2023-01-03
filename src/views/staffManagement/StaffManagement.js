@@ -1,8 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { Button, Card, Modal, Form, Row, Col, Badge } from 'react-bootstrap'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
