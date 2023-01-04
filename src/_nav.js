@@ -27,8 +27,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Employee Management',
-    to: '/employee-management',
+    name: 'Client Management',
+    to: '/client',
     icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
   {
@@ -49,12 +49,6 @@ const _nav = [
     to: '/reports',
     icon: <CIcon icon={cibReadTheDocs} customClassName="nav-icon" />,
   },
-  // {
-  //   component: CNavItem,
-  //   name: 'Logs',
-  //   to: '/logs',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
   {
     component: CNavItem,
     name: 'System Configuration',

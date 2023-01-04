@@ -24,7 +24,6 @@ import DataGrid, {
   ColumnChooser,
   Export,
   Selection,
-  Lookup,
   Paging,
 } from 'devextreme-react/data-grid'
 
@@ -79,7 +78,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
   var dataGrid = null
 
   useEffect(() => {
-    if (dataProject == 0) {
+    if (dataProject === 0) {
       GetDataTable()
     }
   }, [dataProject])
@@ -131,7 +130,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
               caption="Is Acive"
               allowFiltering={false}
               cellRender={(e) => {
-                if (e.data.isActive == 1) {
+                if (e.data.isActive === 1) {
                   console.log(e.data.isActive)
                   return (
                     <CBadge color="success" shape="rounded-pill">
@@ -156,7 +155,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
               caption="Action"
               allowFiltering={false}
               cellRender={(e) => {
-                if (e.data.isActive == 1) {
+                if (e.data.isActive === 1) {
                   return (
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                       <CButton>
@@ -176,7 +175,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
                             })
                             .then((data) => {
                               console.log(data.data.data.code)
-                              if (data.data.data.code == 200) {
+                              if (data.data.data.code === 200) {
                                 GetDataTable()
                                 Notify.notifySuccessTopCenter(data.data.data.message)
                               } else {
@@ -209,7 +208,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
                             })
                             .then((data) => {
                               console.log(data.data.data.code)
-                              if (data.data.data.code == 200) {
+                              if (data.data.data.code === 200) {
                                 GetDataTable()
                                 Notify.notifySuccessTopCenter(data.data.data.message)
                               } else {
