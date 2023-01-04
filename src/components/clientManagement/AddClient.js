@@ -9,7 +9,7 @@ const AddClient_URL = '/api/UserManagement/AddUser'
 const Lookup_URL = '/api/BusinessManagement/getlookup'
 const gender = 'gender'
 const usertype = 'usertype'
-const AddClient = () => {
+const AddClient = ({ ...props }) => {
   React.useEffect(() => {}, [])
   const [errMsg, setErrMsg] = useState('')
   const [success, setSuccess] = useState(false)

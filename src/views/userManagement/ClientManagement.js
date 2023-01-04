@@ -10,6 +10,7 @@ import saveAs from 'file-saver'
 import Notify from '../../Helper/Notify'
 import * as Icon from 'react-bootstrap-icons'
 import LoadingSpinner from '../../components/Spinner/Spinner'
+import AddClient from 'src/components/clientManagement/AddClient'
 import DataGrid, {
   Column,
   FilterRow,
@@ -233,15 +234,15 @@ const ClientManagement = () => {
         </Card.Body>
       </Card>
 
-      {/* <Modal
+      <Modal
         show={modalShow}
         className={'modal-success'}
         size="lg"
         aria-labelledby="contained-modal"
         centered
       >
-        <AddUser onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
-      </Modal> */}
+        <AddClient onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
+      </Modal>
     </div>
   )
 }
