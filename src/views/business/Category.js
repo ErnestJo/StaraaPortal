@@ -108,11 +108,11 @@ const Category = () => {
             showRowLines={true}
             showBorders={true}
           >
-            <Column dataField="categoryId" alignment="center" caption="Staff Id" />
+            <Column dataField="categoryId" alignment="center" caption="Category Id" />
             <Column dataField="categoryName" alignment="center" caption="Category Name" />
 
             <Column
-              dataField="staff_id"
+              dataField="categoryId"
               alignment="center"
               caption="Action"
               allowFiltering={false}
@@ -132,14 +132,14 @@ const Category = () => {
             />
             <ColumnChooser enabled={true} />
             <Selection mode="multiple" />
-            <Export enabled={true} fileName="Staff" allowExportSelectedData={true} />
+            <Export enabled={true} fileName="category Name" allowExportSelectedData={true} />
             <Paging defaultPageSize={5} />
             <FilterRow visible={state.showFilterRow} applyFilter={state.currentFilter} />
             <HeaderFilter visible={state.showHeaderFilter} />
             <Selection mode="single" />
             <SearchPanel visible={true} width={240} placeholder="Search..." />
             <Summary>
-              <TotalItem column="staffId" summaryType="count" />
+              <TotalItem column="categoryId" summaryType="count" />
             </Summary>
           </DataGrid>
         </Card.Body>

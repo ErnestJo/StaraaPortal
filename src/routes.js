@@ -5,8 +5,8 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const clientsManagement = React.lazy(() => import('./views/userManagement/ClientManagement'))
 const staffManagement = React.lazy(() => import('./views/staffManagement/StaffManagement'))
 const category = React.lazy(() => import('./views/business/Category'))
-const product = React.lazy(() => import('./views/business/product'))
-const service = React.lazy(() => import('./views/business/service'))
+const product = React.lazy(() => import('./views/business/Product'))
+const service = React.lazy(() => import('./views/business/Service'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },

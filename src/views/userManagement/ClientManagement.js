@@ -221,14 +221,14 @@ const ClientManagement = () => {
             /> */}
             <ColumnChooser enabled={true} />
             <Selection mode="multiple" />
-            <Export enabled={true} fileName="Staff" allowExportSelectedData={true} />
+            <Export enabled={true} fileName="client" allowExportSelectedData={true} />
             <Paging defaultPageSize={5} />
             <FilterRow visible={state.showFilterRow} applyFilter={state.currentFilter} />
             <HeaderFilter visible={state.showHeaderFilter} />
             <Selection mode="single" />
             <SearchPanel visible={true} width={240} placeholder="Search..." />
             <Summary>
-              <TotalItem column="staffId" summaryType="count" />
+              <TotalItem column="userId" summaryType="count" />
             </Summary>
           </DataGrid>
         </Card.Body>
