@@ -15,23 +15,23 @@ import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
-const GetStats_URL = '/api/get_dashboard_stats'
+//const GetStats_URL = '/api/get_dashboard_stats'
 const WidgetsDropdown = () => {
   const [stats, setStats] = useState([])
 
-  useEffect(() => {
-    axios({
-      method: 'GET',
-      url: GetStats_URL,
-    })
-      .then((data) => {
-        var stat = data.data[0].data[0]
-        setStats(stat)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios({
+  //     method: 'GET',
+  //     url: GetStats_URL,
+  //   })
+  //     .then((data) => {
+  //       var stat = data.data[0].data[0]
+  //       setStats(stat)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }, [])
 
   return (
     <CRow>
@@ -39,7 +39,7 @@ const WidgetsDropdown = () => {
         <CWidgetStatsA
           className="mb-4"
           color="primary"
-          value={stats.totalEmployees}
+          // value={stats.totalEmployees}
           title="Total Employees"
           action={
             <CDropdown alignment="end">
@@ -119,7 +119,7 @@ const WidgetsDropdown = () => {
         <CWidgetStatsA
           className="mb-4"
           color="info"
-          value={stats.totalRequests}
+          //value={stats.totalRequests}
           title="Total Properties Request"
           action={
             <CDropdown alignment="end">
@@ -198,7 +198,7 @@ const WidgetsDropdown = () => {
         <CWidgetStatsA
           className="mb-4"
           color="warning"
-          value={stats.properties}
+          //value={stats.properties}
           title="Total Properties"
           action={
             <CDropdown alignment="end">
@@ -264,7 +264,7 @@ const WidgetsDropdown = () => {
         <CWidgetStatsA
           className="mb-4"
           color="danger"
-          value={stats.totalProject}
+          // value={stats.totalProject}
           title="Total Projects"
           action={
             <CDropdown alignment="end">

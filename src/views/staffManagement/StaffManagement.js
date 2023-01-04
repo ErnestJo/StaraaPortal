@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Button, Card, Modal, Form, Row, Col, Badge } from 'react-bootstrap'
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
@@ -28,11 +27,9 @@ import DataGrid, {
 } from 'devextreme-react/data-grid'
 
 const GetStaff_URL = '/api/StaffManagement/GetAllStaff'
-const AddStaff_URL = '/api/StaffManagement/AddStaff'
 const GetSingle_URL = '/api/StaffManagement/GetSingleStaff'
 const Disable_URL = '/api/StaffManagement/DisableStaff'
 const Active_URL = '/api/StaffManagement/ActivateStaff'
-const ChangePassword_URL = '/api/StaffManagement/ChangeStaffPassword'
 
 const StaffManagement = (posttWithLoader, getWithLoader) => {
   const [modalShow, setModalShow] = React.useState(false)
@@ -78,7 +75,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
   var dataGrid = null
 
   useEffect(() => {
-    if (dataProject === 0) {
+    if (dataProject == 0) {
       GetDataTable()
     }
   }, [dataProject])
