@@ -7,18 +7,20 @@ const PropertiesManagement = React.lazy(() =>
 )
 const clientsManagement = React.lazy(() => import('./views/userManagement/ClientManagement'))
 const staffManagement = React.lazy(() => import('./views/staffManagement/StaffManagement'))
-const PropertiesRequst = React.lazy(() => import('./views/propertiesRequest/PropertiesRequest'))
-const Reports = React.lazy(() => import('./views/reports/Reports'))
-const Logs = React.lazy(() => import('./views/logs/Logs'))
-const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
-const SystemConfig = React.lazy(() => import('./views/systemConfig/SystemConfig'))
-const UserProfile = React.lazy(() => import('./views/userSettings/userSettings'))
+const category = React.lazy(() => import('./views/business/category'))
+const product = React.lazy(() => import('./views/business/product'))
+const service = React.lazy(() => import('./views/business/product'))
+
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
   { path: '/client', name: 'Clients Management', element: clientsManagement },
   { path: '/staff', name: 'Staff Management', element: staffManagement },
+  { path: '/category', name: 'Category', element: category },
+  { path: '/product', name: 'product', element: product },
+  { path: '/service', name: 'service', element: service },
 ]
 
 export default routes
