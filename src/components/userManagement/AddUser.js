@@ -22,7 +22,6 @@ const AddUser = ({ ...props }) => {
 
   const email = useRef({})
   email.current = watch('email', '')
-
   const submitUserData = (data) => {
     try {
       var body = {
@@ -42,7 +41,7 @@ const AddUser = ({ ...props }) => {
         })
         .then((data) => {
           reset()
-          console.log(data.data[0].data[0])
+          console.log(data.data)
           if ((data.data.data.code = 200)) {
             props.reloadPage()
             props.onHide()
@@ -155,7 +154,6 @@ const AddUser = ({ ...props }) => {
               </Form.Select>
             </Form.Group>
           </Col>
-
           <Col md={6} sm={12}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
@@ -172,7 +170,6 @@ const AddUser = ({ ...props }) => {
               />
             </Form.Group>
           </Col>
-
           <Col md={6} sm={12}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
@@ -189,7 +186,6 @@ const AddUser = ({ ...props }) => {
               />
             </Form.Group>
           </Col>
-
           <Col md={6} sm={12}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
@@ -206,7 +202,6 @@ const AddUser = ({ ...props }) => {
               />
             </Form.Group>
           </Col>
-
           <Col md={6} sm={12}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>

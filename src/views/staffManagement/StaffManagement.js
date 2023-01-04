@@ -239,9 +239,6 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
           </DataGrid>
         </Card.Body>
       </Card>
-      {/* <Modal isOpen={state.toggleAddNewUser} toggle={toggleNewUser} className={'modal-success'}>
-        <AddUser />
-      </Modal> */}
 
       <Modal
         show={modalShow}
@@ -250,7 +247,7 @@ const StaffManagement = (posttWithLoader, getWithLoader) => {
         aria-labelledby="contained-modal"
         centered
       >
-        <AddUser onHide={() => setModalShow(false)} />
+        <AddUser onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
       </Modal>
     </div>
   )
