@@ -33,27 +33,21 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Properties Management',
-    to: '/properties-management',
-    icon: <CIcon icon={cilRoom} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Properties Request',
-    to: '/properties-request',
-    icon: <CIcon icon={cilSwapHorizontal} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Reports',
-    to: '/reports',
+    name: 'Service',
+    to: '/service',
     icon: <CIcon icon={cibReadTheDocs} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'System Configuration',
-    to: '/system-configuration',
-    icon: <CIcon icon={cilAppsSettings} customClassName="nav-icon" />,
+    name: 'Product',
+    to: '/product',
+    icon: <CIcon icon={cilSwapHorizontal} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Category',
+    to: '/category',
+    icon: <CIcon icon={cilRoom} customClassName="nav-icon" />,
   },
 ]
 

@@ -2,16 +2,11 @@ import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
-const PropertiesManagement = React.lazy(() =>
-  import('./views/propertiesManagement/PropertiesManagement'),
-)
 const clientsManagement = React.lazy(() => import('./views/userManagement/ClientManagement'))
 const staffManagement = React.lazy(() => import('./views/staffManagement/StaffManagement'))
-const category = React.lazy(() => import('./views/business/category'))
+const category = React.lazy(() => import('./views/business/Category'))
 const product = React.lazy(() => import('./views/business/product'))
-const service = React.lazy(() => import('./views/business/product'))
-
-
+const service = React.lazy(() => import('./views/business/service'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
