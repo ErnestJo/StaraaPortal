@@ -113,7 +113,7 @@ const ClientManagement = () => {
             showRowLines={true}
             showBorders={true}
           >
-            <Column dataField="staffId" alignment="center" caption="Staff Id" />
+            <Column dataField="userId" alignment="center" caption="Staff Id" />
             <Column dataField="firstName" alignment="center" caption="First Name" />
             <Column dataField="middleName" alignment="center" caption="Middle Name" />
             <Column dataField="lastName" alignment="center" caption="Last Name" />
