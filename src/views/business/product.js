@@ -10,7 +10,7 @@ import saveAs from 'file-saver'
 import Notify from '../../Helper/Notify'
 import * as Icon from 'react-bootstrap-icons'
 import LoadingSpinner from '../../components/Spinner/Spinner'
-import AddClient from 'src/components/clientManagement/AddClient'
+import Addproduct from 'src/components/business/Addproduct'
 import DataGrid, {
   Column,
   FilterRow,
@@ -159,7 +159,7 @@ const Product = () => {
         aria-labelledby="contained-modal"
         centered
       >
-        <AddClient onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
+        <Addproduct onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
       </Modal>
     </div>
   )
