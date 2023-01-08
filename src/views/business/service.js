@@ -10,6 +10,7 @@ import saveAs from 'file-saver'
 import Notify from '../../Helper/Notify'
 import * as Icon from 'react-bootstrap-icons'
 import LoadingSpinner from '../../components/Spinner/Spinner'
+import AddService from '../../components/business/AddService'
 import AddClient from 'src/components/clientManagement/AddClient'
 import DataGrid, {
   Column,
@@ -112,12 +113,7 @@ const Service = () => {
           >
             <Column dataField="serviceId" alignment="center" caption="Service Id" />
             <Column dataField="serviceName" alignment="center" caption="Service Name" />
-            <Column
-              dataField="servicePrice"
-              alignment="center"
-              format="currency"
-              caption="Service Name"
-            />
+            <Column dataField="servicePrice" alignment="center" format="currency" caption="Cost" />
             <Column
               dataField="serviceDoneDate"
               alignment="center"
@@ -197,7 +193,7 @@ const Service = () => {
         aria-labelledby="contained-modal"
         centered
       >
-        <AddClient onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
+        <AddService onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
       </Modal>
     </div>
   )
