@@ -10,7 +10,7 @@ import saveAs from 'file-saver'
 import Notify from '../../Helper/Notify'
 import * as Icon from 'react-bootstrap-icons'
 import LoadingSpinner from '../../components/Spinner/Spinner'
-import AddClient from 'src/components/clientManagement/AddClient'
+import AddCategory from 'src/components/business/AddCategory'
 import DataGrid, {
   Column,
   FilterRow,
@@ -148,11 +148,11 @@ const Category = () => {
       <Modal
         show={modalShow}
         className={'modal-success'}
-        size="lg"
+        size="md"
         aria-labelledby="contained-modal"
         centered
       >
-        <AddClient onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
+        <AddCategory onHide={() => setModalShow(false)} reloadPage={GetDataTable} />
       </Modal>
     </div>
   )
